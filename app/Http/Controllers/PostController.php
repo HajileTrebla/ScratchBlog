@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
         ]);
 
         $newPost = Post::create($data);
@@ -45,6 +45,7 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::findOrFail($id);
+        $post->body = htmlspecialchars_decode($post->body);
         return view('posts.show', ['post' => $post]);
     }
 
@@ -54,7 +55,7 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.edit', ['$post' => $post]);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -62,7 +63,15 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $post = Post::findOrFail($id);
+        $post->update($data);
+
+        return redirect(route('posts.index'))->with('success', 'Updated post #'.$post->id.":".$post->title.' on '.$post->updated_at);
     }
 
     /**
@@ -70,6 +79,11 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $title = $post->title;
+        $post->delete();
+
+        return redirect(route('posts.index'))->with('success', 'Deleted post #'.$id.":".$title);
     }
 }
