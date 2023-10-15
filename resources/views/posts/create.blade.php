@@ -5,7 +5,7 @@
               <h1 class='text-5xl font-semibold'>
                   {{ __('Create Post') }}
               </h1>
-              <div class='rounded mx-2 my-6 px-6 py-4 bg-gray-300 dark:bg-gray-500'>
+              <div class='rounded mx-2 my-6 px-6 pt-4 bg-gray-300 dark:bg-gray-500'>
                   <form action="{{ route('posts.store') }}" method='POST' class="w-full max-w-lg">
                       @csrf
                       @method('post')
@@ -23,18 +23,45 @@
                               <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-100 text-sm font-bold mb-2">
                                   {{ __('Post Content') }}
                               </label>
-                              <textarea rows="10"
-                                        cols="50"
-                                        class="appearance-none bg-gray-100 text-base text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                        name='body'
+                              <textarea name='body'
                                         id="grid-body"
                                         placeholder="Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident."></textarea>
-                              <button type="submit" class=" rounded px-4 py-2 font-semibold bg-blue-500 hover:bg-blue-100 hover:text-gray-900">
+                              <button type="submit" class=" rounded mt-4 px-4 py-2 font-semibold bg-blue-500 hover:bg-blue-100 hover:text-gray-900">
                                   {{ __('Post') }}
                               </button>
                           </div>
                       </div>
                   </form>
+
+                  <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+                  <script>
+//                      CKEDITOR.editorConfig = function( config ) {
+//                          config.width = '75%';
+//                          config.height = 500;
+//                          }
+
+//                      CKEDITOR.replace( 'ClassicEditor', {
+//                          width: '75%',
+//                          height: 500
+//                      });
+
+                        ClassicEditor
+                            .create( document.querySelector( '#grid-body' ), {
+                                width: 500,
+                                height: 500,
+                                toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+                                heading: {
+                                    options: [
+                                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                                    ]
+                                }
+                            } )
+                            .catch( error => {
+                                console.error( error );
+                            } );
+                  </script>
               </div>
           </div>
 @endsection
