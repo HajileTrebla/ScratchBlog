@@ -19,7 +19,6 @@
                                      type="text"
                                      name="title"
                                      value="{{ $post->title }}">
-                              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
                               <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-100 text-sm font-bold mb-2">
                                   {{ __('Post Content') }}
                               </label>

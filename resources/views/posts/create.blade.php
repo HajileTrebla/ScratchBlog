@@ -19,7 +19,9 @@
                                      type="text"
                                      name="title"
                                      placeholder="My Post Title">
-                              <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                              <p class="text-red-500 text-xs italic">
+                                    {{ __('Please fill out this field.') }}
+                              </p>
                               <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-100 text-sm font-bold mb-2">
                                   {{ __('Post Content') }}
                               </label>
