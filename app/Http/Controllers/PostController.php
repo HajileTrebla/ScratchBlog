@@ -32,6 +32,7 @@ class PostController extends Controller
         $data = $request->validate([
             'title' => 'required',
             'body' => 'required',
+            'user_id' => 'required',
         ]);
 
         $newPost = Post::create($data);

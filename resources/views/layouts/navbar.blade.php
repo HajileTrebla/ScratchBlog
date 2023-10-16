@@ -10,26 +10,26 @@
       <ul class="font-medium flex flex-row p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-300 md:self-start md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-300 dark:bg-gray-900 md:dark:bg-gray-900 dark:border-gray-700">
         <!-- main nav -->
         <li>
-              <a href="{{ route('landing') }}" class="{{ Request::routeIs('home') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Home</a>
+              <a href="{{ route('landing') }}" class="{{ Request::routeIs('landing') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Home</a>
         </li>
-        @if(auth()->check())
-            <li>
-                <a href="{{ route('posts.index') }}" class="{{ Request::routeIs('posts.index') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Posts</a>
-            </li>
-            <li>
-                  <a href="{{ route('posts.create') }}" class="{{ Request::routeIs('posts.create') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Create Post</a>
-            </li>
-        @endif
         <li>
               <a href="{{ route('about') }}" class="{{ Request::routeIs('about') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0" >About</a>
         </li>
         <li>
               <a href="{{ route('services') }}" class="{{ Request::routeIs('services') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Services</a>
         </li>
+        @auth
+            <li>
+                <a href="{{ route('posts.index') }}" class="{{ Request::routeIs('posts.index') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Blog</a>
+            </li>
+        @endauth
       </ul>
-      <div class="md:flex md:flex-grow">
 
+      <!-- SPACER -->
+      <div class="md:flex md:flex-grow">
       </div>
+      <!-- SPACER -->
+
       <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-300 md:self-end md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-300 dark:bg-gray-900 md:dark:bg-gray-900 dark:border-gray-700">
           <!-- Authentication Links -->
           @guest
@@ -45,23 +45,21 @@
                   </li>
               @endif
           @else
-              <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                      {{ Auth::user()->name }}
-                  </a>
-
-                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{ route('logout') }}"
-                          onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-                          {{ __('Logout') }}
-                      </a>
-
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                          @csrf
-                      </form>
-                  </div>
-              </li>
+          <li>
+              <a href="{{ route('home') }}" class="{{ Request::routeIs('home') ? 'active hidden ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">
+                  {{ Auth::user()->name }}
+              </a>
+          </li>
+          <li>
+              <a class="{{ !Request::routeIs('home') ? 'active hidden ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0" href="{{ route('logout') }}" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                  @method('post')
+              </form>
+          </li>
           @endguest
       </ul>
     </div>

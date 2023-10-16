@@ -25,6 +25,7 @@
                               <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-100 text-sm font-bold mb-2">
                                   {{ __('Post Content') }}
                               </label>
+                              <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                               <textarea name='body'
                                         id="grid-body"
                                         placeholder="Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident."></textarea>

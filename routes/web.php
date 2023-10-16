@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ Route::get('/', [PageController::class, 'index'])->name('landing');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->middleware('auth');
 //Route::group(['prefix' => 'posts'], function (){
 //    Route::get('/', [PostController::class, 'index'])->name('posts.index');
 //    Route::post('/', [PostController::class, 'store'])->name('posts.store');
@@ -33,4 +34,4 @@ Route::resource('posts', PostController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
