@@ -27,10 +27,11 @@
             <table class="table-fixed rounded bg-gray-500">
                 <thead class="text-2xl border-b-2">
                     <tr>
-                        <th class="w-1/4 px-4 py-2 "> {{ __('Post ID') }} </th>
-                        <th class="w-1/2 px-4 py-2 "> {{ __('Post Title') }} </th>
-                        <th class="w-1/4 px-4 py-2 "> {{ __('Edit') }} </th>
-                        <th class="w-1/4 px-4 py-2 "> {{ __('Delete') }} </th>
+                        <th class="w-2/12 px-4 py-2 "> {{ __('Post ID') }} </th>
+                        <th class="w-6/12 px-4 py-2 "> {{ __('Post Title') }} </th>
+                        <th class="w-2/12 px-4 py-2 "> {{ __('') }} </th>
+                        <th class="w-1/12 px-4 py-2 "> {{ __('Options') }} </th>
+                        <th class="w-1/12 px-4 py-2 "> {{ __('') }} </th>
                     </tr>
                 </thead>
                 <tbody class="text-xl text-center border-b-2 rounded-xl">
@@ -44,7 +45,12 @@
                               {{ $post->title }}
                           </a>
                       </td>
-                      <td class="border-t-2">
+                      <td class="text-sm font-semibold border-t-2">
+                          <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="rounded px-4 py-2 bg-blue-500 hover:text-blue-500 hover:bg-blue-100">
+                              {{ __('View Post') }}
+                          </a>
+                      </td>
+                      <td class="text-sm border-t-2">
                         <div class="grid justify-items-center">
                             <a name="edit"
                                 href="{{ route('posts.edit', [ 'post' => $post->id ]) }}"
@@ -53,7 +59,7 @@
                             </a>
                         </div>
                       </td>
-                      <td class="border-t-2">
+                      <td class="text-sm border-t-2">
                         <div class="grid">
                             <form action="{{ route('posts.destroy', [ 'post' => $post->id ]) }}" method="post">
                                 @csrf
