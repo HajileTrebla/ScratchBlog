@@ -861,6 +861,10 @@ video {
   justify-content: space-between;
 }
 
+.justify-items-end {
+  justify-items: end;
+}
+
 .justify-items-center {
   justify-items: center;
 }
@@ -875,6 +879,10 @@ video {
 
 .self-center {
   align-self: center;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .rounded {
@@ -1760,6 +1768,10 @@ video {
 
   .md\:w-screen {
     width: 100vw;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:flex-grow {
