@@ -18,10 +18,10 @@
         <li>
               <a href="{{ route('services') }}" class="{{ Request::routeIs('services') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Services</a>
         </li>
+        <li>
+            <a href="{{ route('posts.index') }}" class="{{ Request::routeIs('posts.index') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Blog</a>
+        </li>
         @auth
-            <li>
-                <a href="{{ route('posts.index') }}" class="{{ Request::routeIs('posts.index') ? 'active text-blue-700 hover:text-gray-600 dark:hover:text-gray-300 ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">Blog</a>
-            </li>
         @endauth
       </ul>
 
@@ -46,12 +46,12 @@
               @endif
           @else
           <li>
-              <a href="{{ route('home') }}" class="{{ Request::routeIs('home') ? 'active hidden ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">
+              <a href="{{ route('home') }}" class="{{ Request::routeIs('home') ? 'active hidden ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}font-semibold block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0">
                   {{ Auth::user()->name }}
               </a>
           </li>
           <li>
-              <a class="{{ !Request::routeIs('home') ? 'active hidden ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0" href="{{ route('logout') }}" onclick="event.preventDefault();
+              <a class="{{ !Request::routeIs('home') ? 'active hidden ' : 'text-gray-900 md:text-gray-900 dark:text-gray-100 md:dark:text-gray-100 hover:text-blue-500 ' }}font-semibold block py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:p-0" href="{{ route('logout') }}" onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
               </a>

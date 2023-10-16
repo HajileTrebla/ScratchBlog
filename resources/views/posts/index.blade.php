@@ -11,7 +11,7 @@
                     {{ $post->title }}
                 </a>
             </h3>
-            <small>{{ __('Written on ').$post->created_at }}</small>
+            <small>{{ __('Written on ').$post->created_at.__(' by ').$post->user->name }}</small>
         </div>
         @endforeach
         {{ $posts->render() }}
