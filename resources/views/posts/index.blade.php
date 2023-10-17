@@ -18,13 +18,17 @@
                     </div>
                     <div class="flex flex-grow">
                     </div>
-                    @if($post->cover_image)
-                    <div class="overflow-hidden h-48 w-72">
+                    <div class="overflow-hidden h-48 w-72 rounded flex">
+                        @if($post->cover_image)
                         <img src="{{ asset('storage/'.$post->cover_image) }}"
-                        alt=""
-                        class="rounded object-contain align-self-center">
+                            alt=""
+                            class="rounded object-contain align-self-center">
+                        @else
+                        <img src="{{ asset('storage/CoverImages/noimage.jpg') }}"
+                            alt=""
+                            class="rounded object-contain align-self-center">
+                        @endif
                     </div>
-                    @endif
                 </div>
             </a>
         </div>

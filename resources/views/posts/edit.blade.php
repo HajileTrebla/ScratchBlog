@@ -6,7 +6,7 @@
                   {{ __('Edit Post') }}
               </h1>
               <div class='rounded mx-2 my-6 px-6 pt-4 bg-gray-300 dark:bg-gray-500'>
-                  <form action="{{ route('posts.update', ['post' => $post->id]) }}" method='POST' class="w-full max-w-lg">
+                  <form action="{{ route('posts.update', ['post' => $post->id]) }}" method='POST' class="w-full max-w-lg" enctype="multipart/form-data">
                       @csrf
                       @method('patch')
                       <div class="flex flex-col -mx-3 mb-6">
@@ -24,6 +24,11 @@
                               </label>
                               <textarea name='body'
                                         id="grid-body">{{ $post->body }}</textarea>
+                              <label for="cover_image">
+                                    {{ __('Change Cover Image') }}
+                              </label>
+                              <input type="file" name="cover_image" id='cover_image'
+                                     class="mx-2 my-2">
                               <button type="submit" class=" rounded mt-4 px-4 py-2 font-semibold bg-blue-500 hover:bg-blue-100 hover:text-gray-900">
                                   {{ __('Save') }}
                               </button>

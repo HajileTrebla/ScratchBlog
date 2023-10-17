@@ -100,6 +100,15 @@ class PostController extends Controller
             return redirect(route('posts.index'))->with('error', 'Unauthorized Page');
         }
 
+        if ($request->hasFile('cover_image')){
+            if(!is_null($post->cover_image)) {
+                $this->DeleteFile($post->cover_image);
+            }
+
+            $path = $this->UploadFile($request->file('cover_image'), 'CoverImages');
+            $post['cover_image'] = $path;
+        }
+
         $post->update($data);
 
         return redirect(route('posts.index'))->with('success', 'Updated post #'.$post->id.":".$post->title.' on '.$post->updated_at);
@@ -114,6 +123,10 @@ class PostController extends Controller
 
         if ($post->user_id !== auth()->user()->id){
             return redirect(route('posts.index'))->with('error', 'Unauthorized Page');
+        }
+
+        if ($post->cover_image !== 'noimage.jpg'){
+            $this->DeleteFile($post->cover_image);
         }
 
         $title = $post->title;
