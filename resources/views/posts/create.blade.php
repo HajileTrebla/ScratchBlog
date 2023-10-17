@@ -6,7 +6,7 @@
                   {{ __('Create Post') }}
               </h1>
               <div class='rounded mx-2 my-6 px-6 pt-4 bg-gray-300 dark:bg-gray-500'>
-                  <form action="{{ route('posts.store') }}" method='POST' class="w-full max-w-lg">
+                  <form action="{{ route('posts.store') }}" method='POST' class="w-full max-w-lg" enctype="multipart/form-data">
                       @csrf
                       @method('post')
                       <div class="flex flex-col -mx-3 mb-6">
@@ -29,6 +29,8 @@
                               <textarea name='body'
                                         id="grid-body"
                                         placeholder="Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident."></textarea>
+                              <input type="file" name="cover_image" id='cover_image'
+                                     class="mx-2 my-2">
                               <button type="submit" class=" rounded mt-4 px-4 py-2 font-semibold bg-blue-500 hover:bg-blue-100 hover:text-gray-900">
                                   {{ __('Post') }}
                               </button>

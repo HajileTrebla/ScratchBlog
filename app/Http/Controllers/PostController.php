@@ -6,11 +6,17 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Traits\Upload as AppUpload;
+
 class PostController extends Controller
 {
+
+    use AppUpload;
+
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('optimizeImages');
     }
     /**
      * Display a listing of the resource.
@@ -38,7 +44,16 @@ class PostController extends Controller
             'title' => 'required',
             'body' => 'required',
             'user_id' => 'required',
+            'cover_image' => 'image|nullable|max:1999',
         ]);
+
+        if($request->hasFile('cover_image')){
+//            $reg = '(\.)(?!.*\.).*';
+//            $fname = preg_replace($reg, '', $request->cover_image);
+            $path = $this->UploadFile($request->file('cover_image'), 'CoverImages');
+
+            $data['cover_image'] = $path;
+        }
 
         $newPost = Post::create($data);
 

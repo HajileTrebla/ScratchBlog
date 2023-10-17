@@ -2,6 +2,19 @@
 
 @section('content')
             <div class='rounded mx-2 my-2 px-6 py-4 bg-gray-400 dark:bg-gray-700'>
+                @if($post->cover_image)
+                    <div class="overflow-hidden flex flex-row rounded w-full h-96 my-2">
+                        <div class="flex flex-grow">
+                        </div>
+                        <div class="w-4/6">
+                            <img src="{{ asset('storage/'.$post->cover_image) }}"
+                                 alt=""
+                                 class="rounded object-fit align-self-center">
+                        </div>
+                        <div class="flex flex-grow">
+                        </div>
+                    </div>
+                @endif
                 <h1 class='text-2xl font-semibold'>
                     {{ $post->title }}
                 </h1>
